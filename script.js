@@ -7,25 +7,23 @@ var specialChars = " !\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
-  alert('Welcome to the Password Generator!');
-
   // ask user to select which criteria to include in the password
   var lower = confirm('Would you like lowercase letters?');
   var upper = confirm('Would you like uppercase letters?');
   var numeric = confirm('Would you like numeric characters?');
   var special = confirm('Would you like special characters?');
 
-  var passwordSet = '';
-
   if (!lower && !upper && !numeric && !special) {
-    alert('Generate a password by selecting at least one type of character.');
+    alert('Try again - please select at least one type of character.');
   } else {
     // user can choose a length of at least 8 characters and no more than 128 characters
     var length = prompt('How long would you like your password to be? Choose from 8 to 128 characters.');
 
-    if (length < 8 || length > 128) {
-      alert('Generate a password with a length of at least 8 characters and no more than 128 characters.');
+    if (isNaN(length) || length < 8 || length > 128) {
+      alert('Try again - please select a valid length of at least 8 characters and no more than 128 characters.');
     } else {
+      var passwordSet = '';
+
       // lowercase, uppercase, numeric, and/or special characters are added to possible password character set
       if (lower) {
         passwordSet += alphaChars;
