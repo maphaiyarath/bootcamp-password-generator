@@ -1,3 +1,4 @@
+// character sets for user to choose from
 var alphaChars = 'abcdefghijklmnopqrstuvwxyz';
 var numChars = '0123456789';
 var specialChars = " !\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
@@ -8,12 +9,12 @@ var generateBtn = document.querySelector("#generate");
 function generatePassword() {
   alert('Welcome to the Password Generator!');
 
-  // user can choose 
   // ask user to select which criteria to include in the password
   var lower = confirm('Would you like lowercase letters?');
   var upper = confirm('Would you like uppercase letters?');
   var numeric = confirm('Would you like numeric characters?');
   var special = confirm('Would you like special characters?');
+
   var passwordSet = '';
 
   if (!lower && !upper && !numeric && !special) {
@@ -42,9 +43,10 @@ function generatePassword() {
         passwordSet += specialChars;
       }
     
+      // initialize empty string to add to pw
       var pw = '';
-      console.log(passwordSet);
       
+      // randomly select character from applicable set
       for (var i = 0; i < length; i++) {
         var random = Math.floor(Math.random() * passwordSet.length);
         pw += passwordSet[random];
@@ -54,6 +56,7 @@ function generatePassword() {
     }
   }
 
+  // return null if user does not select any criteria or valid length
   return null;
 }
 
@@ -63,10 +66,9 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
-// add event listener to generate button
+// add event listener to generate button which generates series of prompts for password criteria
 generateBtn.addEventListener("click", writePassword);
 
 // TODO
