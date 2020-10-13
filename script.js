@@ -11,38 +11,43 @@ function generatePassword() {
   var upper = confirm('Would you like uppercase letters?');
   var numeric = confirm('Would you like numeric characters?');
   var special = confirm('Would you like special characters?');
-  var length = prompt('How long would you like your password to be? Choose from 8 to 128 characters.');
-  
   var passwordSet = '';
 
-  if (lower) {
-    // passwordSet.push(alphaChars);
-    passwordSet += alphaChars;
-  }
-
-  if (upper) {
-    // passwordSet.push(alphaChars.toUpperCase());
-    passwordSet += alphaChars.toUpperCase();
-  }
+  if (!lower && !upper && !numeric && !special) {
+    alert('Generate a password by selecting at least one of the criteria.');
+  } else {
+    var length = prompt('How long would you like your password to be? Choose from 8 to 128 characters.');
+    if (lower) {
+      // passwordSet.push(alphaChars);
+      passwordSet += alphaChars;
+    }
   
-  if (numeric) {
-    // passwordSet.push(numChars);
-    passwordSet += numChars;
-  }
-
-  if (special) {
-    // passwordSet.push(specialChars);
-    passwordSet += specialChars;
-  }
-
-  var pw = '';
+    if (upper) {
+      // passwordSet.push(alphaChars.toUpperCase());
+      passwordSet += alphaChars.toUpperCase();
+    }
+    
+    if (numeric) {
+      // passwordSet.push(numChars);
+      passwordSet += numChars;
+    }
   
-  for (var i = 0; i < length; i++) {
-    var random = Math.floor(Math.random() * passwordSet.length);
-    pw += passwordSet[random];
+    if (special) {
+      // passwordSet.push(specialChars);
+      passwordSet += specialChars;
+    }
+  
+    var pw = '';
+    
+    for (var i = 0; i < length; i++) {
+      var random = Math.floor(Math.random() * passwordSet.length);
+      pw += passwordSet[random];
+    }
+  
+    return pw;
   }
 
-  return pw;
+  return null;
 }
 
 // Write password to the #password input
