@@ -11,25 +11,38 @@ function generatePassword() {
   var upper = confirm('Would you like uppercase letters?');
   var numeric = confirm('Would you like numeric characters?');
   var special = confirm('Would you like special characters?');
+  var length = prompt('How long would you like your password to be? Choose from 8 to 128 characters.');
   
-  var passwordSet = []
+  var passwordSet = '';
 
   if (lower) {
-    passwordSet.push(alphaChars);
+    // passwordSet.push(alphaChars);
+    passwordSet += alphaChars;
   }
 
   if (upper) {
-    passwordSet.push(alphaChars.toUpperCase());
+    // passwordSet.push(alphaChars.toUpperCase());
+    passwordSet += alphaChars.toUpperCase();
   }
   
   if (numeric) {
-    passwordSet.push(numChars);
+    // passwordSet.push(numChars);
+    passwordSet += numChars;
   }
 
   if (special) {
-    passwordSet.push(specialChars)
+    // passwordSet.push(specialChars);
+    passwordSet += specialChars;
   }
-  console.log(passwordSet);
+
+  var pw = '';
+  
+  for (var i = 0; i < length; i++) {
+    var random = Math.floor(Math.random() * passwordSet.length);
+    pw += passwordSet[random];
+  }
+
+  return pw;
 }
 
 // Write password to the #password input
